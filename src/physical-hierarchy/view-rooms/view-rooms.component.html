@@ -1,0 +1,21 @@
+<ng-container *ngIf="dataSource.data.length>0">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="roomname">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Room Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.roomname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="roomdescription">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Room Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.roomdescription}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</ng-container>
+<pre></pre>
+<ng-container *ngIf="!dataSource.data.length>0">
+    <label>No rooms Added</label>
+</ng-container>
+<pre></pre>
+<button mat-raised-button color="primary" (click)="addRooms()">Add Rooms</button>

@@ -1,0 +1,20 @@
+<ng-container *ngIf="floorData">
+    <mat-card *ngFor="let floor of floorData; let i=index">
+        <div>
+            <label>{{floor.name}}</label>
+            <button class="somedata" (click)="expandPanel(floor,i)" mat-icon-button>
+                <mat-icon>{{i==currentValue? 'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
+            </button>
+            <button class="somedata" mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+        <mat-card-content *ngIf="currentValue==i">
+            <label>{{floor.name}}</label>
+            <app-view-rooms [roomData]="floor.rooms" [floorid]="floor.id"></app-view-rooms>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
+<ng-container *ngIf="!floorData || floorData.length==0">
+    <h4>No Floor Data Available</h4>
+</ng-container>

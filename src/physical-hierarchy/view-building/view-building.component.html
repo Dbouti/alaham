@@ -1,0 +1,28 @@
+<ng-container *ngIf="dataOnce">
+    <mat-card *ngFor="let building of dataOnce; let i=index">
+        <div>
+            <label>{{building.name}}</label>
+            <button class="somedata" (click)="expandPanel(building,i)" mat-icon-button>
+                <mat-icon>{{i==currentValue? 'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
+            </button>
+            <button class="somedata" mat-icon-button>
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </div>
+        <mat-card-content *ngIf="currentValue==i">
+            <ng-container *ngIf="!loader">
+                <label>{{building.name}}</label>
+                <app-view-floor
+                [floorData]="building.floors"
+                 *ngIf="!loader"
+                 [buildingid]="building.id"
+                 >
+                </app-view-floor>
+            </ng-container>
+            <ng-container *ngIf="loader">
+                <mat-progress-bar [mode]="'indeterminate'">
+                </mat-progress-bar>
+            </ng-container>
+        </mat-card-content>
+    </mat-card>
+</ng-container>
